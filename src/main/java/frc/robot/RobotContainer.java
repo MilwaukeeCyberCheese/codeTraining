@@ -8,16 +8,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.ComplexAuto;
-import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
-import frc.robot.commands.HalveDriveSpeed;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.utils.FilteredController;
 
 /**
@@ -52,14 +49,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     // Configure default commands
-    // Set the default drive command to split-stick arcade drive
-    m_robotDrive.setDefaultCommand(
-        // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the right.
-        new DefaultDrive(
-            m_robotDrive,
-            m_driverController::getYLeft,
-            m_driverController::getXRight));
+    //TODO left stick is forwards and backwards, right stick is rotation, and right trigger is slow mode
 
     // Add commands to the autonomous command chooser
     m_chooser.setDefaultOption("Simple Auto", m_simpleAuto);
@@ -100,9 +90,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // While holding the shoulder button, drive at half speed
-    new Trigger(m_driverController::getRightBumper)
-        .whileTrue(new HalveDriveSpeed(m_robotDrive));
+    //TODO left bumper sets braking to true, right bumper sets braking to false
   }
 
   /**

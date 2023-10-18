@@ -14,19 +14,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
-  private final MotorControllerGroup m_leftMotors =
-      new MotorControllerGroup(
-          new PWMSparkMax(DriveConstants.kLeftMotor1Port),
-          new PWMSparkMax(DriveConstants.kLeftMotor2Port));
+  //TODO create left motor group
 
   // The motors on the right side of the drive.
-  private final MotorControllerGroup m_rightMotors =
-      new MotorControllerGroup(
-          new PWMSparkMax(DriveConstants.kRightMotor1Port),
-          new PWMSparkMax(DriveConstants.kRightMotor2Port));
+  //TODO create right motor group
 
   // The robot's drive
-  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+  //create {@link DifferentialDrive} object
 
   // The left-side drive encoder
   private final Encoder m_leftEncoder =
@@ -47,7 +41,7 @@ public class DriveSubsystem extends SubsystemBase {
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
-    m_rightMotors.setInverted(true);
+    //TODO invert one side of the drivetrain
 
     // Sets the distance per pulse for the encoders
     m_leftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
@@ -59,10 +53,16 @@ public class DriveSubsystem extends SubsystemBase {
    *
    * @param fwd the commanded forward movement
    * @param rot the commanded rotation
+   * @param slow whether the robot should drive slowly
    */
-  public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
-  }
+  //TODO create arcade drive method
+
+  /**
+   * Set motors to braking or coasting
+   * 
+   * @param brake whether the motors should brake or coast
+   */
+  //TODO create braking method
 
   /** Resets the drive encoders to currently read a position of 0. */
   public void resetEncoders() {
@@ -79,14 +79,7 @@ public class DriveSubsystem extends SubsystemBase {
     return (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
   }
 
-  /**
-   * Sets the max output of the drive. Useful for scaling the drive to drive more slowly.
-   *
-   * @param maxOutput the maximum output to which the drive will be constrained
-   */
-  public void setMaxOutput(double maxOutput) {
-    m_drive.setMaxOutput(maxOutput);
-  }
+  
 
   @Override
   public void initSendable(SendableBuilder builder) {

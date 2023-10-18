@@ -15,19 +15,15 @@ import java.util.function.DoubleSupplier;
  * explicitly for pedagogical purposes - actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.RunCommand}.
  */
-public class DefaultDrive extends CommandBase {
-  private final DriveSubsystem m_drive;
-  private final DoubleSupplier m_forward;
-  private final DoubleSupplier m_rotation;
-  private final BooleanSupplier slow;
+public class SetBrakeMode extends CommandBase {
+  private final DriveSubsystem m_DriveSubsystem;
+    private final BooleanSupplier m_brakeMode;
 
   /**
    * Creates a new DefaultDrive.
    *
-   * @param subsystem The drive subsystem this command wil run on.
-   * @param forward The control input for driving forwards/backwards
-   * @param rotation The control input for turning
-   * @param slow The control input for slowing down
+   * @param driveSubsystem The drive subsystem
+   * @param brakeMode whether to brake or coast, braking is true
    */
   //TODO create a constructor here
 
